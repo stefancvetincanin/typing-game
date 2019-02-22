@@ -27,7 +27,7 @@
 
             <div class="col-md-10">
                 <div class="section1">
-                    <h1>Typing game</h1>
+                    <h1 id="naslov">Typing game</h1>
                     <section class="section-diff">
 
                         <label for="easy"><input type="radio" name="difficulty" id="easy" value="easy" checked>Easy</label>
@@ -39,9 +39,9 @@
                     </section>
                 </div>
                 <div class="section-task">
-                    <button>Start Game</button>
-                    <h2 id="task">17</h2>
-                    <input type="text" name="letter" id="letter" placeholder="Input Letter...">
+                    <button id="start">Start Game</button>
+                    <h2 id="task">/</h2>
+                    <input type="text" name="letter" id="letter" placeholder="Input Letter..." disabled>
                 </div>
                 <div class="section-numbers" id="section-numbers">
                     
@@ -51,9 +51,9 @@
             <div class="col-md-1">
                 <div class="section-score">
                     <h4>SCORE</h4>
-                    <h5 id="hit">Hit: 1</h5>
-                    <h5 id="miss">Miss: 2</h5>
-                    <h5 id="left">Left: 13</h5>
+                    <h5>Hit: </h5> <h5 id="hit">0</h5><br>
+                    <h5>Miss: </h5><h5 id="miss">0</h5><br>
+                    <h5>Left: </h5><h5 id="left">0</h5>
                 </div>
             </div>
         </div>

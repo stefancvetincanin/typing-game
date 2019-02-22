@@ -28,6 +28,10 @@ input[type=radio] {
     text-align: right;
 }
 
+.section-score > h5 {
+    display: inline-block
+}
+
 button {
     margin-bottom: 15px;
     border-radius: 5%;
@@ -58,10 +62,12 @@ button:hover {
 
 .number-correct {
     color: rgb(22, 131, 22);
+    background-color: rgb(132, 238, 106);
 }
 
 .number-wrong {
     color: rgb(185, 19, 19);
+    background-color: orangered;
 }
 
 .section-numbers {
