@@ -1,0 +1,71 @@
+.section-diff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-diff > label {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+input[type=radio] {
+    cursor: pointer;
+    margin: 0 8px;
+}
+
+.section1, .section-task {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.section-task {
+    padding: 20px 0 30px;
+}
+
+.section-score {
+    text-align: right;
+}
+
+button {
+    margin-bottom: 15px;
+    border-radius: 5%;
+    border: 1px solid skyblue;
+    background-color: transparent;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    color: blue;
+}
+
+button:hover {
+    background-color: rgba(200, 220, 200, 0.5)
+}
+
+#letter {
+    margin-top: 11px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.number-item {
+    flex-basis: 16.6%;
+    color: rgb(175, 166, 166);
+    margin-bottom: 15px;
+}
+
+.number-correct {
+    color: rgb(22, 131, 22);
+}
+
+.number-wrong {
+    color: rgb(185, 19, 19);
+}
+
+.section-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    /* text-align: center; */
+}

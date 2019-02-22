@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Typing game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jQuery -->
+    <script src="bootstrap/jquery-3.3.1.min.js"></script>
+    <!-- Popper -->
+    <script src="bootstrap/popper.min.js"></script>
+    <!-- BOOTSTRAP .css -->
+    <link rel="stylesheet" type="text/css" media="screen" href="bootstrap/bootstrap.min.css" />
+    <!-- BOOTSTRAP .js -->
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <!-- Our sources -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-10">
+                <div class="section1">
+                    <h1>Typing game</h1>
+                    <section class="section-diff">
+
+                        <label for="easy"><input type="radio" name="difficulty" id="easy" value="easy" checked>Easy</label>
+
+                        <label for="medium"><input type="radio" name="difficulty" id="medium"
+                                value="medium">Medium</label>
+
+                        <label for="hard"><input type="radio" name="difficulty" id="hard" value="hard">Hard</label>
+                    </section>
+                </div>
+                <div class="section-task">
+                    <button>Start Game</button>
+                    <h2 id="task">17</h2>
+                    <input type="text" name="letter" id="letter" placeholder="Input Letter...">
+                </div>
+                <div class="section-numbers" id="section-numbers">
+                    
+                </div>
+            </div>
+
+            <div class="col-md-1">
+                <div class="section-score">
+                    <h4>SCORE</h4>
+                    <h5 id="hit">Hit: 1</h5>
+                    <h5 id="miss">Miss: 2</h5>
+                    <h5 id="left">Left: 13</h5>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
