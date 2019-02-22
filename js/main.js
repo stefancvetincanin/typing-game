@@ -5,7 +5,7 @@ const nizSlova = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M
 const brojevi = []
 const start = s("start")
 const task = s("task")
-let vreme = 100
+let vreme = 5000
 let brojac = -1
 let interval
 let game = false
