@@ -34,14 +34,27 @@ function napuni() {
     }
 }
 
+// ova funkcija stopira igru
+function stopirajIgru() {
+    brojac = -1
+    clearInterval(interval)
+    task.innerHTML = "Game Over"
+    game = false
+    start.innerHTML = "Start Game"
+    s("easy").removeAttribute("disabled")
+    s("medium").removeAttribute("disabled")
+    s("hard").removeAttribute("disabled")
+    start.removeAttribute("disabled")
+    s("naslov").innerHTML = "Game Over!"
+}
+
 function intervalGame() {
-    s("naslov").innerHTML = "GO!"
+    s("naslov").innerHTML = "Go!"
     brojac++
     task.innerHTML = brojevi[brojac]
     if (!dodaoKlasu) {
         let temp = brojevi[brojac - 1]
         s(`number${temp}`).classList.add("number-wrong")
-        
         if (pukaoMiMozak) {
             let temp3 = Number(miss.innerHTML)
             temp3++
@@ -51,7 +64,6 @@ function intervalGame() {
             left.innerHTML = temp2
             pukaoMiMozak = false
         }
-
     }
     if (neodigrano) {
         let temp = Number(miss.innerHTML)
@@ -67,20 +79,12 @@ function intervalGame() {
     dodaoKlasu = false
     neodigrano = true
     if (brojac > 25) {
-        brojac = -1
-        clearInterval(interval)
-        task.innerHTML = "Game Over"
-        game = false
-        s("easy").removeAttribute("disabled")
-        s("medium").removeAttribute("disabled")
-        s("hard").removeAttribute("disabled")
-        start.removeAttribute("disabled")
-        
+        stopirajIgru()
     }
 }
 
 function ocistiPolje() {
-    for( let i = 1; i < 27; i++ ) {
+    for (let i = 1; i < 27; i++) {
         s(`number${i}`).classList.remove("number-correct")
         s(`number${i}`).classList.remove("number-wrong")
     }
@@ -99,21 +103,26 @@ for (let i = 1; i < 27; i++) {
 numbersList.innerHTML = drawString
 
 start.addEventListener("click", function () {
-    start.setAttribute("disabled", true)
-    ocistiPolje()
-    neodigrano = false
-    s("easy").setAttribute("disabled", true)
-    s("medium").setAttribute("disabled", true)
-    s("hard").setAttribute("disabled", true)
-    s("naslov").innerHTML = "GET READY!"
-    task.innerHTML = "GET READY!"
-    napuni()
-    game = true
-    interval = setInterval(intervalGame, vreme)
-    hit.innerHTML = 0
-    miss.innerHTML = 0
-    left.innerHTML = 26
-    pukaoMiMozak = true
+    if (!game) {
+        // start.setAttribute("disabled", true)
+        ocistiPolje()
+        neodigrano = false
+        s("easy").setAttribute("disabled", true)
+        s("medium").setAttribute("disabled", true)
+        s("hard").setAttribute("disabled", true)
+        s("naslov").innerHTML = "GET READY!"
+        task.innerHTML = "GET READY!"
+        napuni()
+        game = true
+        start.innerHTML = "Stop Game"
+        interval = setInterval(intervalGame, vreme)
+        hit.innerHTML = 0
+        miss.innerHTML = 0
+        left.innerHTML = 26
+        pukaoMiMozak = true
+    } else {
+        stopirajIgru()
+    }
 })
 
 document.addEventListener("keypress", function (e) {
@@ -152,8 +161,3 @@ s("medium").addEventListener("change", function () {
 s("hard").addEventListener("change", function () {
     vreme = 2000
 })
-
-// useful links
-// https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
-// https://stackoverflow.com/questions/16089421/simplest-way-to-detect-keypresses-in-javascript
-// https://mathiasbynens.be/notes/javascript-escapes
