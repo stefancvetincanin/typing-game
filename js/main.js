@@ -17,6 +17,8 @@ let potez = false
 let neodigrano
 let dodaoKlasu = false
 let pukaoMiMozak = true // ne mogu da smislim bolju logiku od ove proklete zastavice... sutra...
+let konverzija
+let prviTurn = true
 
 // ova funkcija pravi niz random brojeva koji se ne ponavljaju
 function napuni() {
@@ -46,6 +48,7 @@ function stopirajIgru() {
     s("hard").removeAttribute("disabled")
     start.removeAttribute("disabled")
     s("naslov").innerHTML = "Game Over!"
+    prviTurn = true
 }
 
 function intervalGame() {
@@ -54,17 +57,21 @@ function intervalGame() {
     task.innerHTML = brojevi[brojac]
     if (!dodaoKlasu) {
         let temp = brojevi[brojac - 1]
-        s(`number${temp}`).classList.add("number-wrong")
-        if (pukaoMiMozak) {
-            let temp3 = Number(miss.innerHTML)
-            temp3++
-            miss.innerHTML = temp3
-            let temp2 = Number(left.innerHTML)
-            temp2--
-            left.innerHTML = temp2
-            pukaoMiMozak = false
+        if (prviTurn == false) {
+            s(`number${temp}`).classList.add("number-wrong")
         }
+        // if (pukaoMiMozak) {
+        //     alert("NE")
+        //     let temp3 = Number(miss.innerHTML)
+        //     temp3++
+        //     miss.innerHTML = temp3
+        //     let temp2 = Number(left.innerHTML)
+        //     temp2--
+        //     left.innerHTML = temp2
+        //     pukaoMiMozak = false
+        // }
     }
+
     if (neodigrano) {
         let temp = Number(miss.innerHTML)
         temp++
@@ -74,15 +81,22 @@ function intervalGame() {
         left.innerHTML = temp2
         dodaoKlasu = false
     }
+    prviTurn = false
     pukaoMiMozak = false
     potez = false
     dodaoKlasu = false
     neodigrano = true
     if (brojac > 25) {
+        alert(`
+                Your score is:\n
+                Hit: ${hit.innerHTML}!\n
+                Miss: ${miss.innerHTML}!\n
+                Left: ${left.innerHTML}`)
         stopirajIgru()
     }
 }
 
+// Clears the success/failure indicators from the previous round
 function ocistiPolje() {
     for (let i = 1; i < 27; i++) {
         s(`number${i}`).classList.remove("number-correct")
@@ -104,7 +118,6 @@ numbersList.innerHTML = drawString
 
 start.addEventListener("click", function () {
     if (!game) {
-        // start.setAttribute("disabled", true)
         ocistiPolje()
         neodigrano = false
         s("easy").setAttribute("disabled", true)
@@ -125,10 +138,16 @@ start.addEventListener("click", function () {
     }
 })
 
+// Event listener for keypresses during gameplay
 document.addEventListener("keypress", function (e) {
-    if (e.keyCode >= 97 && e.keyCode <= 122 && game == true && potez == false) {
+    if(e.keyCode >= 65 && e.keyCode <= 90) {
+        konverzija = e.keyCode + 32
+    } else {
+        konverzija = e.keyCode
+    }
+    if (konverzija >= 97 && konverzija <= 122 && game == true && potez == false) {
         potez = true
-        if (e.keyCode == (Number(task.innerHTML) + 96)) {
+        if (konverzija == (Number(task.innerHTML) + 96)) {
             s(`number${task.innerHTML}`).classList.add("number-correct")
             dodaoKlasu = true
             let temp = Number(hit.innerHTML)
@@ -152,6 +171,7 @@ document.addEventListener("keypress", function (e) {
     }
 })
 
+// Difficulty selectors
 s("easy").addEventListener("change", function () {
     vreme = 5000
 })

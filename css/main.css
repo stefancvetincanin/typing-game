@@ -28,7 +28,7 @@ input[type=radio] {
     text-align: right;
 }
 
-.section-score > h5 {
+.section-score > h5, .section-score > h6 {
     display: inline-block
 }
 
@@ -74,4 +74,16 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     /* text-align: center; */
+}
+
+#hit {
+    color: green;
+}
+
+#miss {
+    color: red;
+}
+
+#left {
+    color: blue;
 }
